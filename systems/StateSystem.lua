@@ -43,7 +43,6 @@ function StateSystem.stand(position,speed,state,body,input)
     if input.GoRight ~= input.GoLeft then
         state.current = "walk"
     elseif input.Jump == true then
-            print("jump")
             state.current = "jump"
             speed.current.y = jumpspeed;
     end

@@ -22,7 +22,7 @@ function PhysicsSystem:update()
 
 	    position.current:add(speed.current:product(frameduration));
 
-		if (position.current.y < 0) then
+		if (position.current.y <= 0) then
 		    position.current.y = 0
 		    state.onGround = true
 		else
