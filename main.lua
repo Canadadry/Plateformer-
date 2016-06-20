@@ -31,7 +31,8 @@ function love.load()
     
     engine = Engine()
     engine:addSystem(TileDisplaySystem())
-    engine:addSystem(PhysicsSystem())
+    physicSystem = PhysicsSystem()
+    engine:addSystem(physicSystem())
     engine:addSystem(StateSystem())
     engine:addSystem(InputSystem())
 
@@ -58,9 +59,7 @@ function love.load()
                                         1,0,0,0,0,0,0,0,0,1,
                                         1,1,1,1,1,1,1,1,1,1},10,7,50,50))
     engine:addEntity(tileMapEntity)
-
-
-
+    physicSystem:setTilemap(tileMapEntity)
 end
 
 function love.update(dt)
