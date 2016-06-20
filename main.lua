@@ -1,6 +1,7 @@
 -- Lib and Helper
 require("lib/lovetoys/lovetoys")
 require("systems/TileDisplaySystem")
+require("systems/TileMapDisplaySystem")
 require("systems/PhysicsSystem")
 require("systems/InputSystem")
 require("systems/StateSystem")
@@ -13,6 +14,7 @@ SpeedComponent     = Component.create("SpeedComponent",{"current","old"},{0})
 SpriteComponent    = Component.create("SpriteComponent",{"texture"})
 TouchableComponent = Component.create("TouchableComponent",{"width","height","name"},{50,50,"default"})
 TileComponent      = Component.create("TileComponent",{"color","w","h"},{{255,0,0},50,50})
+TileMapComponent   = Component.create("TileMapComponent",{"map","w","h","tw","th"},{nil,0,0,50,50})
 InputComponent     = Component.create("InputComponent",{"l_button","r_button","d_button","j_button","GoLeft","GoRight","GoDown","Jump"})
 StateComponent     = Component.create("StateComponent",{
                                             "current", --  Stand,Walk,Jump,GrabLedge,
@@ -45,6 +47,19 @@ function love.load()
     position = entity:get("PositionComponent")
     speed = entity:get("SpeedComponent")
     state = entity:get("StateComponent")
+
+    local tileMapEntity = Entity()    
+    tileMapEntity:add(PositionComponent(Vec2(0,0),Vec2(0,0)))
+    tileMapEntity:add(TileMapComponent({1,1,1,1,1,1,1,1,1,1,
+                                        1,0,0,0,0,0,0,0,0,1,
+                                        1,0,0,0,0,0,0,0,0,1,
+                                        1,1,1,1,0,0,0,0,0,1,
+                                        1,0,0,0,0,0,0,0,0,1,
+                                        1,0,0,0,0,0,0,0,0,1,
+                                        1,1,1,1,1,1,1,1,1,1},10,7,50,50))
+    engine:addEntity(tileMapEntity)
+
+
 
 end
 
